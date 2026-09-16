@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YR Cleaning Solutions | Professional Cleaning in Bristol</title>
+    <meta name="description" content="Reliable, professional cleaning services for homes and businesses across Bristol. Get your quote in 60 seconds. End of Tenancy, Deep Cleaning, and Regular Domestic Cleaning.">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-blue: #0A1F44; /* Deep Navy from Logo */
+            --secondary-blue: #1E3A8A;
+            --accent-gold: #D4AF37; /* Gold from Logo */
+            --light-bg: #F8F9FA;
+            --white: #ffffff;
+            --text-dark: #333333;
+            --text-light: #666666;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-blue);
+        }
+
+        a { text-decoration: none; color: inherit; }
+
+        /* --- Header --- */
+        header {
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 80px; /* Adjust based on actual logo file */
+            width: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-gold);
+        }
+
+        .btn-quote {
+            background: var(--accent-gold);
+            color: var(--primary-blue);
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .btn-quote:hover {
+            background: var(--primary-blue);
+            color: var(--white);
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            background: linear-gradient(rgba(10, 31, 68, 0.8), rgba(10, 31, 68, 0.8)), url('./images/hero1.webp');
+            background-size: cover;
+            background-position: center;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            padding: 0 1rem;
+        }
+
+        .hero-content h1 {
+            color: var(--white);
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* --- Booking Wizard --- */
+        .booking-section {
+            background: var(--light-bg);
+            padding: 4rem 1rem;
+            text-align: center;
+        }
+
+        .booking-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .progress-bar {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .progress-bar::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #e0e0e0;
+            z-index: 1;
+            transform: translateY(-50%);
+        }
+
+        .step {
+            width: 30px;
+            height: 30px;
+            background: #e0e0e0;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #fff;
+            position: relative;
+            z-index: 2;
+            transition: background 0.3s;
+        }
+
+        .step.active {
+            background: var(--accent-gold);
+            color: var(--primary-blue);
+        }
+
+        .form-step {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+
+        .form-step.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--primary-blue);
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .btn-next, .btn-prev, .btn-submit {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .btn-next, .btn-submit {
+            background: var(--primary-blue);
+            color: var(--white);
+        }
+
+        .btn-prev {
+            background: #ccc;
+            color: var(--text-dark);
+            margin-right: 1rem;
+        }
+
+        .btn-next:hover, .btn-submit:hover {
+            background: var(--accent-gold);
+            color: var(--primary-blue);
+        }
+
+        /* --- Services --- */
+        .services {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            text-align: center;
+            transition: transform 0.3s;
+            border-top: 4px solid var(--accent-gold);
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--secondary-blue);
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            margin-bottom: 1rem;
+        }
+
+        .service-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background: var(--primary-blue);
+            color: var(--white);
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-col h4 {
+            color: var(--accent-gold);
+            margin-bottom: 1.5rem;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-col a:hover {
+            color: var(--accent-gold);
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero-content h1 { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="nav-container">
+            <div class="logo">
+                <!-- Replace with actual logo path -->
+                <img src="./images/8F17981F-BC9B-4CFF-86B6-6D660A7BF041.png" alt="YR Cleaning Solutions Logo">
+            </div>
+            <nav class="nav-links">
+                <a href="#services">Services</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+            </nav>
+            <a href="#booking" class="btn-quote">Get a Quote</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Clean Spaces. Fresh Vibes. Better Lives.</h1>
+            <p>Professional, reliable cleaning services for homes and businesses across Bristol.</p>
+            <a href="#booking" class="btn-quote" style="font-size: 1.2rem; padding: 1rem 2rem;">Get Your Quote in 60 Seconds</a>
+        </div>
+    </section>
+
+    <!-- Booking Wizard Section -->
+    <section id="booking" class="booking-section">
+        <div class="booking-container">
+            <h2 style="margin-bottom: 2rem;">Get Your Instant Quote</h2>
+            
+            <form id="quoteForm">
+                <!-- Progress Bar -->
+                <div class="progress-bar">
+                    <div class="step active">1</div>
+                    <div class="step">2</div>
+                    <div class="step">3</div>
+                    <div class="step">4</div>
+                    <div class="step">5</div>
+                    <div class="step">6</div>
+                    <div class="step">7</div>
+                    <div class="step">8</div>
+                    <div class="step">9</div>
+                </div>
+
+                <!-- Step 1: Postcode -->
+                <div class="form-step active" id="step1">
+                    <div class="form-group">
+                        <label>What is your Postcode?</label>
+                        <input type="text" name="postcode" placeholder="e.g. BS7 0QH" required>
+                    </div>
+                    <button type="button" class="btn-next" onclick="nextStep(1)">Next</button>
+                </div>
+
+                <!-- Step 2: Property Type -->
+                <div class="form-step" id="step2">
+                    <div class="form-group">
+                        <label>Property Type</label>
+                        <select name="property_type" required>
+                            <option value="">Select...</option>
+                            <option value="Flat">Flat/Apartment</option>
+                            <option value="House">House</option>
+                            <option value="Bungalow">Bungalow</option>
+                            <option value="Office">Office/Commercial</option>
+                        </select>
+                    </div>
+                    <button type="button" class="btn-prev" onclick="prevStep(2)">Back</button>
+                    <button type="button" class="btn-next" onclick="nextStep(2)">Next</button>
+                </div>
+
+                <!-- Step 3: Bedrooms -->
+                <div class="form-step" id="step3">
+                    <div class="form-group">
+                        <label>Number of Bedrooms</label>
+                        <select name="bedrooms" required>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5+">5+</option>
+                        </select>
+                    </div>
+                    <button type="button" class="btn-prev" onclick="prevStep(3)">Back</button>
+                    <button type="button" class="btn-next" onclick="nextStep(3)">Next</button>
+                </div>
+
+                <!-- Step 4: Bathrooms -->
+                <div class="form-step" id="step4">
+                    <div class="form-group">
+                        <label>Number of Bathrooms</label>
+                        <select name="bathrooms" required>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4+">4+</option>
+                        </select>
+                    </div>
+                    <button type="button" class="btn-prev" onclick="prevStep(4)">Back</button>
+                    <button type="button" class="btn-next" onclick="nextStep(4)">Next</button>
+                </div>
+
+                <!-- Step 5: Service -->
+                <div class="form-step" id="step5">
+                    <div class="form-group">
+                        <label>Service Required</label>
+                        <select name="service" required>
+                            <option value="Regular Domestic">Regular Domestic Cleaning</option>
+                            <option value="Deep Clean">Deep Cleaning</option>
+                            <option value="End of Tenancy">End of Tenancy Cleaning</option>
+                            <option value="Office">Office & Commercial</option>
+                            <option value="Airbnb">Airbnb & Holiday Home</option>
+                            <option value="Patio">Patio & Driveway</option>
+                        </select>
+                    </div>
+                    <button type="button" class="btn-prev" onclick="prevStep(5)">Back</button>
+                    <button type="button" class="btn-next" onclick="nextStep(5)">Next</button>
+                </div>
+
+                <!-- Step 6: Preferred Date -->
+                <div class="form-step" id="step6">
+                    <div class="form-group">
+                        <label>Preferred Date</label>
+                        <input type="date" name="date" required>
+                    </div>
+                    <button type="button" class="btn-prev" onclick="prevStep(6)">Back</button>
+                    <button type="button" class="btn-next" onclick="nextStep(6)">Next</button>
+                </div>
+
+                <!-- Step 7: Name -->
+                <div class="form-step" id="step7">
+                    <div class="form-group">
+                        <label>Your Name</label>
+                        <input type="text" name="name" placeholder="John Doe" required>
+                    </div>
+                    <button type="button" class="btn-prev" onclick="prevStep(7)">Back</button>
+                    <button type="button" class="btn-next" onclick="nextStep(7)">Next</button>
+                </div>
+
+                <!-- Step 8: Phone -->
+                <div class="form-step" id="step8">
+                    <div class="form-group">
+                        <label>Phone Number</label>
+                        <input type="tel" name="phone" placeholder="07123 456789" required>
+                    </div>
+                    <button type="button" class="btn-prev" onclick="prevStep(8)">Back</button>
+                    <button type="button" class="btn-next" onclick="nextStep(8)">Next</button>
+                </div>
+
+                <!-- Step 9: Email -->
+                <div class="form-step" id="step9">
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" name="email" placeholder="john@example.com" required>
+                    </div>
+                    <button type="button" class="btn-prev" onclick="prevStep(9)">Back</button>
+                    <button type="submit" class="btn-submit">Get My Quote</button>
+                </div>
+            </form>
+            
+            <div id="form-message" style="display:none; margin-top: 1rem; color: green; font-weight: bold;">
+                Thank you! Your quote request has been sent. We will contact you shortly.
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <h2 class="section-title">Our Services</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-home"></i></div>
+                <h3>Regular Domestic</h3>
+                <p>A cleaner home without the hassle. Weekly, fortnightly or monthly visits tailored to your needs.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-broom"></i></div>
+                <h3>Deep Cleaning</h3>
+                <p>A fresh start from top to bottom. We focus on skirting boards, doors, and hard-to-reach areas.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-key"></i></div>
+                <h3>End of Tenancy</h3>
+                <p>Leave your property looking its best. Detailed clean designed to meet landlord standards.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-building"></i></div>
+                <h3>Office & Commercial</h3>
+                <p>Keep your workplace clean, fresh, and presentable for employees and customers.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-bed"></i></div>
+                <h3>Airbnb & Holiday Homes</h3>
+                <p>Guest-ready every time. Quick turnaround cleaning to ensure 5-star reviews.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-car"></i></div>
+                <h3>Patio & Driveway</h3>
+                <p>Bring your outdoor space back to life. Removing dirt, grime, and algae.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>YR Cleaning Solutions</h4>
+                <p>We clean with care, so you can live with ease.</p>
+                <p style="margin-top: 1rem;">
+                    <strong>Address:</strong><br>
+                    605 Filton Ave, Horfield,<br>
+                    Bristol, BS7 0QH
+                </p>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Our Values</a></li>
+                    <li><a href="#">Reviews</a></li>
+                    <li><a href="#">FAQs</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact Us</h4>
+                <ul>
+                    <li><i class="fas fa-envelope"></i> info@yrcleaners.co.uk</li>
+                    <li><i class="fas fa-phone"></i> Call Us</li>
+                    <li><i class="fab fa-whatsapp"></i> WhatsApp Us</li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2026 YR Cleaning Solutions. All rights reserved. | Privacy Policy | Terms & Conditions
+        </div>
+    </footer>
+
+    <!-- JavaScript for Booking Wizard -->
+    <script>
+        let currentStep = 1;
+
+        function nextStep(step) {
+            // Validate current step inputs before proceeding
+            const currentInput = document.querySelector(`#step${step} input, #step${step} select`);
+            if (currentInput && !currentInput.checkValidity()) {
+                currentInput.reportValidity();
+                return;
+            }
+
+            // Hide current step
+            document.getElementById(`step${step}`).classList.remove('active');
+            document.querySelectorAll('.step')[step - 1].classList.remove('active');
+            
+            // Show next step
+            currentStep = step + 1;
+            document.getElementById(`step${currentStep}`).classList.add('active');
+            document.querySelectorAll('.step')[currentStep - 1].classList.add('active');
+        }
+
+        function prevStep(step) {
+            // Hide current step
+            document.getElementById(`step${step}`).classList.remove('active');
+            document.querySelectorAll('.step')[step - 1].classList.remove('active');
+            
+            // Show previous step
+            currentStep = step - 1;
+            document.getElementById(`step${currentStep}`).classList.add('active');
+            document.querySelectorAll('.step')[currentStep - 1].classList.add('active');
+        }
+
+        // Handle Form Submission
+        document.getElementById('quoteForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Gather data
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData.entries());
+
+            // Simulate API Call (In a real scenario, this sends to your backend/email)
+            console.log('Booking Request:', data);
+
+            // Show Success Message
+            document.getElementById('quoteForm').style.display = 'none';
+            document.querySelector('.progress-bar').style.display = 'none';
+            document.getElementById('form-message').style.display = 'block';
+            
+            // Optional: Redirect or reset
+            // alert("Quote request sent! We will contact you shortly.");
+        });
+    </script>
+</body>
+</html>
