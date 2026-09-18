@@ -28,6 +28,8 @@
             box-sizing: border-box;
         }
 
+        html { scroll-behavior: smooth; }
+
         body {
             font-family: 'Roboto', sans-serif;
             color: var(--text-dark);
@@ -41,6 +43,54 @@
         }
 
         a { text-decoration: none; color: inherit; }
+
+        /* --- Utility --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-padding { padding: 5rem 0; }
+        .text-center { text-align: center; }
+
+        .btn-primary {
+            background: var(--accent-gold);
+            color: var(--primary-blue);
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            display: inline-block;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-blue);
+            color: var(--white);
+        }
+
+        /* --- Floating Pop-up --- */
+        .floating-quote {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 9999;
+            background: var(--accent-gold);
+            color: var(--primary-blue);
+            padding: 15px 25px;
+            border-radius: 50px;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .floating-quote:hover { transform: scale(1.05); }
 
         /* --- Header --- */
         header {
@@ -61,7 +111,7 @@
         }
 
         .logo img {
-            height: 80px; /* Adjust based on actual logo file */
+            height: 80px;
             width: auto;
         }
 
@@ -75,26 +125,13 @@
             color: var(--accent-gold);
         }
 
-        .btn-quote {
-            background: var(--accent-gold);
-            color: var(--primary-blue);
-            padding: 0.8rem 1.5rem;
-            border-radius: 5px;
-            font-weight: 700;
-            transition: all 0.3s ease;
-        }
-
-        .btn-quote:hover {
-            background: var(--primary-blue);
-            color: var(--white);
-        }
-
         /* --- Hero Section --- */
         .hero {
-            background: linear-gradient(rgba(10, 31, 68, 0.8), rgba(10, 31, 68, 0.8)), url('./images/hero1.webp');
+            /* REPLACED WITH YOUR LOCAL IMAGE PATH */
+            background: linear-gradient(rgba(10, 31, 68, 0.85), rgba(10, 31, 68, 0.85)), url('./images/hero1.webp');
             background-size: cover;
             background-position: center;
-            height: 80vh;
+            height: 85vh;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -105,32 +142,64 @@
 
         .hero-content h1 {
             color: var(--white);
-            font-size: 3.5rem;
+            font-size: 4rem;
             margin-bottom: 1rem;
         }
 
         .hero-content p {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             margin-bottom: 2rem;
-            max-width: 600px;
+            max-width: 700px;
             margin-left: auto;
             margin-right: auto;
         }
 
+        /* --- About Us --- */
+        .about-section {
+            background: var(--white);
+        }
+        .about-text {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 1.1rem;
+            color: var(--text-light);
+        }
+        .about-text p { margin-bottom: 1.5rem; }
+
+        /* --- Values --- */
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        .value-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: var(--light-bg);
+            border-radius: 10px;
+        }
+        .value-item i {
+            font-size: 2rem;
+            color: var(--accent-gold);
+            margin-bottom: 1rem;
+        }
+        .value-item h4 { margin-bottom: 0.5rem; }
+
         /* --- Booking Wizard --- */
         .booking-section {
             background: var(--light-bg);
-            padding: 4rem 1rem;
-            text-align: center;
         }
 
         .booking-container {
             max-width: 800px;
             margin: 0 auto;
             background: var(--white);
-            padding: 2rem;
+            padding: 3rem;
             border-radius: 10px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-top: 5px solid var(--accent-gold);
         }
 
         .progress-bar {
@@ -165,6 +234,7 @@
             position: relative;
             z-index: 2;
             transition: background 0.3s;
+            font-size: 0.8rem;
         }
 
         .step.active {
@@ -177,9 +247,7 @@
             animation: fadeIn 0.5s;
         }
 
-        .form-step.active {
-            display: block;
-        }
+        .form-step.active { display: block; }
 
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
@@ -198,14 +266,18 @@
             color: var(--primary-blue);
         }
 
-        .form-group input, .form-group select {
+        .form-group input, .form-group select, .form-group textarea {
             width: 100%;
             padding: 1rem;
             border: 1px solid #ddd;
             border-radius: 5px;
             font-size: 1rem;
+            font-family: inherit;
         }
+        .form-group textarea { resize: vertical; height: 100px; }
 
+        .btn-group { display: flex; justify-content: space-between; margin-top: 1rem; }
+        
         .btn-next, .btn-prev, .btn-submit {
             padding: 1rem 2rem;
             border: none;
@@ -216,69 +288,89 @@
             transition: all 0.3s;
         }
 
-        .btn-next, .btn-submit {
-            background: var(--primary-blue);
-            color: var(--white);
-        }
+        .btn-next, .btn-submit { background: var(--primary-blue); color: var(--white); }
+        .btn-prev { background: #ccc; color: var(--text-dark); }
+        .btn-next:hover, .btn-submit:hover { background: var(--accent-gold); color: var(--primary-blue); }
 
-        .btn-prev {
-            background: #ccc;
-            color: var(--text-dark);
-            margin-right: 1rem;
-        }
-
-        .btn-next:hover, .btn-submit:hover {
-            background: var(--accent-gold);
-            color: var(--primary-blue);
-        }
-
-        /* --- Services --- */
-        .services {
+        /* --- Services Detailed --- */
+        .service-detail {
+            display: none; /* Hidden by default, toggled by JS */
+            background: var(--white);
             padding: 4rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
+            border-bottom: 1px solid #eee;
+        }
+        .service-detail.active { display: block; }
+        .service-detail h3 { font-size: 2rem; margin-bottom: 1rem; }
+        .service-detail ul { list-style: none; margin-top: 1rem; }
+        .service-detail ul li { margin-bottom: 0.5rem; padding-left: 1.5rem; position: relative; }
+        .service-detail ul li::before {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            color: var(--accent-gold);
+            position: absolute;
+            left: 0;
         }
 
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-            font-size: 2.5rem;
-        }
-
-        .services-grid {
+        /* --- Before & After Gallery --- */
+        .gallery-section { background: var(--light-bg); }
+        .gallery-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
+            margin-top: 2rem;
         }
-
-        .service-card {
+        .gallery-item {
             background: var(--white);
-            padding: 2rem;
             border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+        .gallery-item p {
+            padding: 1rem;
             text-align: center;
-            transition: transform 0.3s;
-            border-top: 4px solid var(--accent-gold);
+            font-weight: bold;
+            color: var(--primary-blue);
+            background: var(--white);
+            border-top: 3px solid var(--accent-gold);
         }
 
-        .service-card:hover {
-            transform: translateY(-5px);
+        /* --- Pricing Table --- */
+        .pricing-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2rem;
+            background: var(--white);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
         }
+        .pricing-table th, .pricing-table td {
+            padding: 1.5rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        .pricing-table th {
+            background: var(--primary-blue);
+            color: var(--white);
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+        }
+        .pricing-table tr:hover { background: #fdfbf7; }
 
-        .service-icon {
-            font-size: 2.5rem;
-            color: var(--secondary-blue);
-            margin-bottom: 1rem;
+        /* --- Why Choose Us --- */
+        .why-choose-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
         }
-
-        .service-card h3 {
-            margin-bottom: 1rem;
-        }
-
-        .service-card p {
-            color: var(--text-light);
-            font-size: 0.95rem;
-        }
+        .why-choose-item { text-align: center; }
+        .why-choose-item h4 { color: var(--accent-gold); margin-bottom: 0.5rem; }
 
         /* --- Footer --- */
         footer {
@@ -301,17 +393,9 @@
             font-family: 'Playfair Display', serif;
         }
 
-        .footer-col ul {
-            list-style: none;
-        }
-
-        .footer-col ul li {
-            margin-bottom: 0.8rem;
-        }
-
-        .footer-col a:hover {
-            color: var(--accent-gold);
-        }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 0.8rem; }
+        .footer-col a:hover { color: var(--accent-gold); }
 
         .copyright {
             text-align: center;
@@ -326,24 +410,34 @@
         @media (max-width: 768px) {
             .nav-links { display: none; }
             .hero-content h1 { font-size: 2.5rem; }
+            .booking-container { padding: 1.5rem; }
+            .btn-group { flex-direction: column; gap: 10px; }
+            .btn-prev, .btn-next, .btn-submit { width: 100%; }
         }
     </style>
 </head>
 <body>
 
+    <!-- Floating Pop-up -->
+    <a href="#booking" class="floating-quote">
+        <i class="fas fa-comment-dots"></i> Get a Free Quote
+    </a>
+
     <!-- Header -->
     <header>
         <div class="nav-container">
             <div class="logo">
-                <!-- Replace with actual logo path -->
+                <!-- YOUR LOGO -->
                 <img src="./images/8F17981F-BC9B-4CFF-86B6-6D660A7BF041.png" alt="YR Cleaning Solutions Logo">
             </div>
             <nav class="nav-links">
-                <a href="#services">Services</a>
                 <a href="#about">About</a>
+                <a href="#services">Services</a>
+                <a href="#gallery">Gallery</a>
+                <a href="#pricing">Pricing</a>
                 <a href="#contact">Contact</a>
             </nav>
-            <a href="#booking" class="btn-quote">Get a Quote</a>
+            <a href="#booking" class="btn-primary">Book Now</a>
         </div>
     </header>
 
@@ -351,183 +445,452 @@
     <section class="hero">
         <div class="hero-content">
             <h1>Clean Spaces. Fresh Vibes. Better Lives.</h1>
-            <p>Professional, reliable cleaning services for homes and businesses across Bristol.</p>
-            <a href="#booking" class="btn-quote" style="font-size: 1.2rem; padding: 1rem 2rem;">Get Your Quote in 60 Seconds</a>
+            <p>Reliable, professional cleaning services for homes and businesses across Bristol.</p>
+            <a href="#booking" class="btn-primary" style="font-size: 1.2rem; padding: 1rem 2.5rem;">Get Your Quote in 60 Seconds</a>
+        </div>
+    </section>
+
+    <!-- About Us & Values -->
+    <section id="about" class="section-padding about-section">
+        <div class="container">
+            <h2 class="text-center" style="font-size: 2.5rem; margin-bottom: 2rem;">About YR Cleaning Solutions</h2>
+            <div class="about-text">
+                <p>At YR cleaning company we believe a clean space makes life feel better. We provide reliable, professional cleaning services for homes and businesses across Bristol. Whether you need regular cleaning, a deep clean, an end-of-tenancy clean or help keeping your workplace and houses fresh and tidy, we are here to make things easier for you.</p>
+                <p>We take pride in our attention to detail, reliability and friendly service. Every clean is carried out with care, leaving your space fresh, comfortable and spotless. Your space deserves the best — let us take care of the cleaning.</p>
+            </div>
+            
+            <h2 class="text-center" style="font-size: 2.5rem; margin-top: 4rem; margin-bottom: 1rem;">Our Values</h2>
+            <div class="values-grid">
+                <div class="value-item">
+                    <i class="fas fa-star"></i>
+                    <h4>Quality</h4>
+                    <p>We take pride in every clean and never overlook the small details.</p>
+                </div>
+                <div class="value-item">
+                    <i class="fas fa-handshake"></i>
+                    <h4>Reliability</h4>
+                    <p>We show up when we say we will and provide a service you can depend on.</p>
+                </div>
+                <div class="value-item">
+                    <i class="fas fa-user-tie"></i>
+                    <h4>Professionalism</h4>
+                    <p>We treat every home and business with care, respect and professionalism.</p>
+                </div>
+                <div class="value-item">
+                    <i class="fas fa-heart"></i>
+                    <h4>Care</h4>
+                    <p>We genuinely care about our customers and the spaces we clean.</p>
+                </div>
+                <div class="value-item">
+                    <i class="fas fa-leaf"></i>
+                    <h4>Fresh & Safe Spaces</h4>
+                    <p>We aim to leave every space feeling fresh, comfortable and welcoming.</p>
+                </div>
+                <div class="value-item">
+                    <i class="fas fa-smile"></i>
+                    <h4>Customer Satisfaction</h4>
+                    <p>Your happiness matters. We listen to your needs and work hard to exceed expectations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section (Clickable Cards) -->
+    <section id="services" class="section-padding" style="background: var(--light-bg);">
+        <div class="container">
+            <h2 class="text-center" style="font-size: 2.5rem; margin-bottom: 3rem;">Our Services</h2>
+            <div class="services-grid">
+                <!-- Service Card 1 -->
+                <div class="service-card" onclick="selectService('Regular Domestic')">
+                    <div class="service-icon"><i class="fas fa-home"></i></div>
+                    <h3>Regular Domestic</h3>
+                    <p>A cleaner home without the hassle. Weekly, fortnightly or monthly visits tailored to your needs.</p>
+                    <p style="margin-top: 1rem; color: var(--accent-gold); font-weight: bold;">Click to book <i class="fas fa-arrow-right"></i></p>
+                </div>
+                <!-- Service Card 2 -->
+                <div class="service-card" onclick="selectService('Deep Clean')">
+                    <div class="service-icon"><i class="fas fa-broom"></i></div>
+                    <h3>Deep Cleaning</h3>
+                    <p>A fresh start from top to bottom. We focus on skirting boards, doors, and hard-to-reach areas.</p>
+                    <p style="margin-top: 1rem; color: var(--accent-gold); font-weight: bold;">Click to book <i class="fas fa-arrow-right"></i></p>
+                </div>
+                <!-- Service Card 3 -->
+                <div class="service-card" onclick="selectService('End of Tenancy')">
+                    <div class="service-icon"><i class="fas fa-key"></i></div>
+                    <h3>End of Tenancy</h3>
+                    <p>Leave your property looking its best. Detailed clean designed to meet landlord standards.</p>
+                    <p style="margin-top: 1rem; color: var(--accent-gold); font-weight: bold;">Click to book <i class="fas fa-arrow-right"></i></p>
+                </div>
+                <!-- Service Card 4 -->
+                <div class="service-card" onclick="selectService('Office')">
+                    <div class="service-icon"><i class="fas fa-building"></i></div>
+                    <h3>Office & Commercial</h3>
+                    <p>Keep your workplace clean, fresh, and presentable for employees and customers.</p>
+                    <p style="margin-top: 1rem; color: var(--accent-gold); font-weight: bold;">Click to book <i class="fas fa-arrow-right"></i></p>
+                </div>
+                <!-- Service Card 5 -->
+                <div class="service-card" onclick="selectService('Airbnb')">
+                    <div class="service-icon"><i class="fas fa-bed"></i></div>
+                    <h3>Airbnb & Holiday Homes</h3>
+                    <p>Guest-ready every time. Quick turnaround cleaning to ensure 5-star reviews.</p>
+                    <p style="margin-top: 1rem; color: var(--accent-gold); font-weight: bold;">Click to book <i class="fas fa-arrow-right"></i></p>
+                </div>
+                <!-- Service Card 6 -->
+                <div class="service-card" onclick="selectService('Patio')">
+                    <div class="service-icon"><i class="fas fa-car"></i></div>
+                    <h3>Patio & Driveway</h3>
+                    <p>Bring your outdoor space back to life. Removing dirt, grime, and algae.</p>
+                    <p style="margin-top: 1rem; color: var(--accent-gold); font-weight: bold;">Click to book <i class="fas fa-arrow-right"></i></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Detailed Service Info (Hidden until clicked, or just displayed for SEO) -->
+    <!-- For this design, we will display them all in a clean layout below the cards to satisfy the "details" requirement -->
+    <section class="container section-padding">
+        <h2 class="text-center" style="margin-bottom: 3rem;">Service Details</h2>
+        
+        <div class="service-detail active" id="detail-Regular Domestic">
+            <h3>🏠 Regular Domestic Cleaning</h3>
+            <p><strong>A Cleaner Home Without The Hassle</strong></p>
+            <p>Our regular domestic cleaning service helps keep your home consistently fresh, clean and comfortable.</p>
+            <ul>
+                <li>Dusting</li>
+                <li>Vacuuming</li>
+                <li>Mopping</li>
+                <li>Kitchen cleaning</li>
+                <li>Bathroom cleaning</li>
+                <li>Surface wiping</li>
+                <li>General tidying</li>
+            </ul>
+        </div>
+
+        <div class="service-detail active" id="detail-Deep Clean">
+            <h3>✨ Deep Cleaning</h3>
+            <p><strong>A Fresh Start From Top to Bottom</strong></p>
+            <p>Our deep cleaning service is designed to give your home a thorough refresh. We focus on areas often overlooked.</p>
+            <ul>
+                <li>Skirting boards</li>
+                <li>Doors and frames</li>
+                <li>Kitchens & Bathrooms</li>
+                <li>Fixtures</li>
+                <li>Hard-to-reach areas</li>
+                <li>General build-up of dirt and grime</li>
+            </ul>
+        </div>
+
+        <div class="service-detail active" id="detail-End of Tenancy">
+            <h3>🔑 End-of-Tenancy Cleaning</h3>
+            <p><strong>Leave Your Property Looking Its Best</strong></p>
+            <p>Moving out? Let us take care of the cleaning. Designed to leave your property fresh, spotless and ready.</p>
+            <ul>
+                <li>Kitchens & Bathrooms</li>
+                <li>Floors & Surfaces</li>
+                <li>Fixtures</li>
+                <li>Accessible areas</li>
+                <li>General dirt and build-up</li>
+            </ul>
+        </div>
+
+        <div class="service-detail active" id="detail-Office">
+            <h3>🏢 Office & Commercial Cleaning</h3>
+            <p><strong>A Cleaner Workplace. A Better Environment.</strong></p>
+            <p>Keep your workplace clean, fresh and presentable with YR Cleaning Solutions.</p>
+            <ul>
+                <li>Offices & Workspaces</li>
+                <li>Kitchens & Washrooms</li>
+                <li>Communal areas</li>
+                <li>Staff areas</li>
+            </ul>
+        </div>
+
+        <div class="service-detail active" id="detail-Airbnb">
+            <h3>🏡 Airbnb & Holiday-Home Cleaning</h3>
+            <p><strong>Guest-Ready Every Time</strong></p>
+            <p>First impressions matter. We help hosts keep their properties spotless and welcoming.</p>
+            <ul>
+                <li>Bedrooms & Bathrooms</li>
+                <li>Kitchens & Living areas</li>
+                <li>Floors & Surfaces</li>
+                <li>Guest areas</li>
+            </ul>
+        </div>
+
+        <div class="service-detail active" id="detail-Patio">
+            <h3>🚗 Patio & Driveway Cleaning</h3>
+            <p><strong>Bring Your Outdoor Space Back To Life</strong></p>
+            <p>Our professional patio and driveway cleaning service helps restore your outdoor surfaces.</p>
+            <ul>
+                <li>Removes dirt, grime, and algae</li>
+                <li>Restores weathering</li>
+                <li>Leaves surfaces cleaner and fresher</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Before & After Gallery -->
+    <section id="gallery" class="section-padding gallery-section">
+        <div class="container">
+            <h2 class="text-center" style="font-size: 2.5rem; margin-bottom: 1rem;">Before & After</h2>
+            <p class="text-center" style="margin-bottom: 3rem; color: var(--text-light);">See the YR Cleaning difference for yourself.</p>
+            
+            <div class="gallery-grid">
+                <!-- Placeholder images. Replace with your own photos! -->
+                <div class="gallery-item">
+                    <img src="./images/beautiful-shot-modern-house-kitchen.jpg" alt="Kitchen Deep Clean">
+                    <p>Kitchen Deep Clean</p>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Bathroom Refresh">
+                    <p>Bathroom Refresh</p>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Living Room Clean">
+                    <p>Living Room Clean</p>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1595846519845-68e298c2edd8?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Office Space">
+                    <p>Office Space</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="section-padding">
+        <div class="container">
+            <h2 class="text-center" style="font-size: 2.5rem; margin-bottom: 1rem;">Clear & Flexible Pricing</h2>
+            <p class="text-center" style="margin-bottom: 3rem; color: var(--text-light);">Service and price matched on a line-by-line basis.</p>
+            
+            <table class="pricing-table">
+                <thead>
+                    <tr>
+                        <th>Service</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Regular Domestic Cleaning</td>
+                        <td>£___ / hour</td>
+                    </tr>
+                    <tr>
+                        <td>Deep Cleaning</td>
+                        <td>From £___</td>
+                    </tr>
+                    <tr>
+                        <td>End-of-Tenancy Cleaning</td>
+                        <td>From £___</td>
+                    </tr>
+                    <tr>
+                        <td>Office & Commercial Cleaning</td>
+                        <td>Custom Quote</td>
+                    </tr>
+                    <tr>
+                        <td>Airbnb & Holiday-Home Cleaning</td>
+                        <td>From £___</td>
+                    </tr>
+                    <tr>
+                        <td>Patio & Driveway Cleaning</td>
+                        <td>Custom Quote</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p class="text-center" style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-light);">*Prices may vary based on property size and condition. Please use the quote form for an accurate price.</p>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="section-padding" style="background: var(--light-bg);">
+        <div class="container">
+            <h2 class="text-center" style="font-size: 2.5rem; margin-bottom: 1rem;">Why Choose YR Cleaners</h2>
+            <div class="why-choose-grid">
+                <div class="why-choose-item">
+                    <h4>Reliable Service</h4>
+                    <p>We arrive prepared and ready to get the job done.</p>
+                </div>
+                <div class="why-choose-item">
+                    <h4>Attention to Detail</h4>
+                    <p>We don’t just clean what you can see — we focus on the details.</p>
+                </div>
+                <div class="why-choose-item">
+                    <h4>Flexible Cleaning</h4>
+                    <p>Choose a service that works around your home, business and schedule.</p>
+                </div>
+                <div class="why-choose-item">
+                    <h4>Friendly & Professional</h4>
+                    <p>A welcoming service you can feel comfortable inviting into your space.</p>
+                </div>
+                <div class="why-choose-item">
+                    <h4>Quality You Can Trust</h4>
+                    <p>We take pride in delivering a high standard of cleaning every time.</p>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Booking Wizard Section -->
-    <section id="booking" class="booking-section">
-        <div class="booking-container">
-            <h2 style="margin-bottom: 2rem;">Get Your Instant Quote</h2>
+    <section id="booking" class="booking-section section-padding">
+        <div class="container">
+            <h2 class="text-center" style="margin-bottom: 2rem;">Book Your Clean</h2>
+            <p class="text-center" style="margin-bottom: 3rem;">Cleaning When It Works For You. Get your quote in 60 seconds.</p>
             
-            <form id="quoteForm">
-                <!-- Progress Bar -->
-                <div class="progress-bar">
-                    <div class="step active">1</div>
-                    <div class="step">2</div>
-                    <div class="step">3</div>
-                    <div class="step">4</div>
-                    <div class="step">5</div>
-                    <div class="step">6</div>
-                    <div class="step">7</div>
-                    <div class="step">8</div>
-                    <div class="step">9</div>
-                </div>
-
-                <!-- Step 1: Postcode -->
-                <div class="form-step active" id="step1">
-                    <div class="form-group">
-                        <label>What is your Postcode?</label>
-                        <input type="text" name="postcode" placeholder="e.g. BS7 0QH" required>
+            <div class="booking-container">
+                <form id="quoteForm">
+                    <!-- Progress Bar -->
+                    <div class="progress-bar">
+                        <div class="step active">1</div>
+                        <div class="step">2</div>
+                        <div class="step">3</div>
+                        <div class="step">4</div>
+                        <div class="step">5</div>
+                        <div class="step">6</div>
+                        <div class="step">7</div>
+                        <div class="step">8</div>
+                        <div class="step">9</div>
                     </div>
-                    <button type="button" class="btn-next" onclick="nextStep(1)">Next</button>
-                </div>
 
-                <!-- Step 2: Property Type -->
-                <div class="form-step" id="step2">
-                    <div class="form-group">
-                        <label>Property Type</label>
-                        <select name="property_type" required>
-                            <option value="">Select...</option>
-                            <option value="Flat">Flat/Apartment</option>
-                            <option value="House">House</option>
-                            <option value="Bungalow">Bungalow</option>
-                            <option value="Office">Office/Commercial</option>
-                        </select>
+                    <!-- Step 1: Postcode -->
+                    <div class="form-step active" id="step1">
+                        <div class="form-group">
+                            <label>What is your Postcode?</label>
+                            <input type="text" name="postcode" placeholder="e.g. BS7 0QH" required>
+                        </div>
+                        <div class="btn-group">
+                            <button type="button" class="btn-next" onclick="nextStep(1)">Next <i class="fas fa-arrow-right"></i></button>
+                        </div>
                     </div>
-                    <button type="button" class="btn-prev" onclick="prevStep(2)">Back</button>
-                    <button type="button" class="btn-next" onclick="nextStep(2)">Next</button>
-                </div>
 
-                <!-- Step 3: Bedrooms -->
-                <div class="form-step" id="step3">
-                    <div class="form-group">
-                        <label>Number of Bedrooms</label>
-                        <select name="bedrooms" required>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5+">5+</option>
-                        </select>
+                    <!-- Step 2: Property Type -->
+                    <div class="form-step" id="step2">
+                        <div class="form-group">
+                            <label>Property Type</label>
+                            <select name="property_type" required>
+                                <option value="">Select...</option>
+                                <option value="Flat">Flat/Apartment</option>
+                                <option value="House">House</option>
+                                <option value="Bungalow">Bungalow</option>
+                                <option value="Office">Office/Commercial</option>
+                            </select>
+                        </div>
+                        <div class="btn-group">
+                            <button type="button" class="btn-prev" onclick="prevStep(2)"><i class="fas fa-arrow-left"></i> Back</button>
+                            <button type="button" class="btn-next" onclick="nextStep(2)">Next <i class="fas fa-arrow-right"></i></button>
+                        </div>
                     </div>
-                    <button type="button" class="btn-prev" onclick="prevStep(3)">Back</button>
-                    <button type="button" class="btn-next" onclick="nextStep(3)">Next</button>
-                </div>
 
-                <!-- Step 4: Bathrooms -->
-                <div class="form-step" id="step4">
-                    <div class="form-group">
-                        <label>Number of Bathrooms</label>
-                        <select name="bathrooms" required>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4+">4+</option>
-                        </select>
+                    <!-- Step 3: Bedrooms -->
+                    <div class="form-step" id="step3">
+                        <div class="form-group">
+                            <label>Number of Bedrooms</label>
+                            <select name="bedrooms" required>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5+">5+</option>
+                            </select>
+                        </div>
+                        <div class="btn-group">
+                            <button type="button" class="btn-prev" onclick="prevStep(3)"><i class="fas fa-arrow-left"></i> Back</button>
+                            <button type="button" class="btn-next" onclick="nextStep(3)">Next <i class="fas fa-arrow-right"></i></button>
+                        </div>
                     </div>
-                    <button type="button" class="btn-prev" onclick="prevStep(4)">Back</button>
-                    <button type="button" class="btn-next" onclick="nextStep(4)">Next</button>
-                </div>
 
-                <!-- Step 5: Service -->
-                <div class="form-step" id="step5">
-                    <div class="form-group">
-                        <label>Service Required</label>
-                        <select name="service" required>
-                            <option value="Regular Domestic">Regular Domestic Cleaning</option>
-                            <option value="Deep Clean">Deep Cleaning</option>
-                            <option value="End of Tenancy">End of Tenancy Cleaning</option>
-                            <option value="Office">Office & Commercial</option>
-                            <option value="Airbnb">Airbnb & Holiday Home</option>
-                            <option value="Patio">Patio & Driveway</option>
-                        </select>
+                    <!-- Step 4: Bathrooms -->
+                    <div class="form-step" id="step4">
+                        <div class="form-group">
+                            <label>Number of Bathrooms</label>
+                            <select name="bathrooms" required>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4+">4+</option>
+                            </select>
+                        </div>
+                        <div class="btn-group">
+                            <button type="button" class="btn-prev" onclick="prevStep(4)"><i class="fas fa-arrow-left"></i> Back</button>
+                            <button type="button" class="btn-next" onclick="nextStep(4)">Next <i class="fas fa-arrow-right"></i></button>
+                        </div>
                     </div>
-                    <button type="button" class="btn-prev" onclick="prevStep(5)">Back</button>
-                    <button type="button" class="btn-next" onclick="nextStep(5)">Next</button>
-                </div>
 
-                <!-- Step 6: Preferred Date -->
-                <div class="form-step" id="step6">
-                    <div class="form-group">
-                        <label>Preferred Date</label>
-                        <input type="date" name="date" required>
+                    <!-- Step 5: Service -->
+                    <div class="form-step" id="step5">
+                        <div class="form-group">
+                            <label>Service Required</label>
+                            <select name="service" id="serviceSelect" required>
+                                <option value="Regular Domestic">Regular Domestic Cleaning</option>
+                                <option value="Deep Clean">Deep Cleaning</option>
+                                <option value="End of Tenancy">End of Tenancy Cleaning</option>
+                                <option value="Office">Office & Commercial</option>
+                                <option value="Airbnb">Airbnb & Holiday Home</option>
+                                <option value="Patio">Patio & Driveway</option>
+                            </select>
+                        </div>
+                        <div class="btn-group">
+                            <button type="button" class="btn-prev" onclick="prevStep(5)"><i class="fas fa-arrow-left"></i> Back</button>
+                            <button type="button" class="btn-next" onclick="nextStep(5)">Next <i class="fas fa-arrow-right"></i></button>
+                        </div>
                     </div>
-                    <button type="button" class="btn-prev" onclick="prevStep(6)">Back</button>
-                    <button type="button" class="btn-next" onclick="nextStep(6)">Next</button>
-                </div>
 
-                <!-- Step 7: Name -->
-                <div class="form-step" id="step7">
-                    <div class="form-group">
-                        <label>Your Name</label>
-                        <input type="text" name="name" placeholder="John Doe" required>
+                    <!-- Step 6: Preferred Date -->
+                    <div class="form-step" id="step6">
+                        <div class="form-group">
+                            <label>Preferred Date</label>
+                            <input type="date" name="date" required>
+                        </div>
+                        <div class="btn-group">
+                            <button type="button" class="btn-prev" onclick="prevStep(6)"><i class="fas fa-arrow-left"></i> Back</button>
+                            <button type="button" class="btn-next" onclick="nextStep(6)">Next <i class="fas fa-arrow-right"></i></button>
+                        </div>
                     </div>
-                    <button type="button" class="btn-prev" onclick="prevStep(7)">Back</button>
-                    <button type="button" class="btn-next" onclick="nextStep(7)">Next</button>
-                </div>
 
-                <!-- Step 8: Phone -->
-                <div class="form-step" id="step8">
-                    <div class="form-group">
-                        <label>Phone Number</label>
-                        <input type="tel" name="phone" placeholder="07123 456789" required>
+                    <!-- Step 7: Name -->
+                    <div class="form-step" id="step7">
+                        <div class="form-group">
+                            <label>Your Name</label>
+                            <input type="text" name="name" placeholder="John Doe" required>
+                        </div>
+                        <div class="btn-group">
+                            <button type="button" class="btn-prev" onclick="prevStep(7)"><i class="fas fa-arrow-left"></i> Back</button>
+                            <button type="button" class="btn-next" onclick="nextStep(7)">Next <i class="fas fa-arrow-right"></i></button>
+                        </div>
                     </div>
-                    <button type="button" class="btn-prev" onclick="prevStep(8)">Back</button>
-                    <button type="button" class="btn-next" onclick="nextStep(8)">Next</button>
-                </div>
 
-                <!-- Step 9: Email -->
-                <div class="form-step" id="step9">
-                    <div class="form-group">
-                        <label>Email Address</label>
-                        <input type="email" name="email" placeholder="john@example.com" required>
+                    <!-- Step 8: Phone -->
+                    <div class="form-step" id="step8">
+                        <div class="form-group">
+                            <label>Phone Number</label>
+                            <input type="tel" name="phone" placeholder="07123 456789" required>
+                        </div>
+                        <div class="btn-group">
+                            <button type="button" class="btn-prev" onclick="prevStep(8)"><i class="fas fa-arrow-left"></i> Back</button>
+                            <button type="button" class="btn-next" onclick="nextStep(8)">Next <i class="fas fa-arrow-right"></i></button>
+                        </div>
                     </div>
-                    <button type="button" class="btn-prev" onclick="prevStep(9)">Back</button>
-                    <button type="submit" class="btn-submit">Get My Quote</button>
-                </div>
-            </form>
-            
-            <div id="form-message" style="display:none; margin-top: 1rem; color: green; font-weight: bold;">
-                Thank you! Your quote request has been sent. We will contact you shortly.
-            </div>
-        </div>
-    </section>
 
-    <!-- Services Section -->
-    <section id="services" class="services">
-        <h2 class="section-title">Our Services</h2>
-        <div class="services-grid">
-            <div class="service-card">
-                <div class="service-icon"><i class="fas fa-home"></i></div>
-                <h3>Regular Domestic</h3>
-                <p>A cleaner home without the hassle. Weekly, fortnightly or monthly visits tailored to your needs.</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon"><i class="fas fa-broom"></i></div>
-                <h3>Deep Cleaning</h3>
-                <p>A fresh start from top to bottom. We focus on skirting boards, doors, and hard-to-reach areas.</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon"><i class="fas fa-key"></i></div>
-                <h3>End of Tenancy</h3>
-                <p>Leave your property looking its best. Detailed clean designed to meet landlord standards.</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon"><i class="fas fa-building"></i></div>
-                <h3>Office & Commercial</h3>
-                <p>Keep your workplace clean, fresh, and presentable for employees and customers.</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon"><i class="fas fa-bed"></i></div>
-                <h3>Airbnb & Holiday Homes</h3>
-                <p>Guest-ready every time. Quick turnaround cleaning to ensure 5-star reviews.</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon"><i class="fas fa-car"></i></div>
-                <h3>Patio & Driveway</h3>
-                <p>Bring your outdoor space back to life. Removing dirt, grime, and algae.</p>
+                    <!-- Step 9: Email & Notes -->
+                    <div class="form-step" id="step9">
+                        <div class="form-group">
+                            <label>Email Address</label>
+                            <input type="email" name="email" placeholder="john@example.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Additional Notes (Optional)</label>
+                            <textarea name="notes" placeholder="Any specific requirements or access details..."></textarea>
+                        </div>
+                        <div class="btn-group">
+                            <button type="button" class="btn-prev" onclick="prevStep(9)"><i class="fas fa-arrow-left"></i> Back</button>
+                            <button type="submit" class="btn-submit">Get My Quote <i class="fas fa-check"></i></button>
+                        </div>
+                    </div>
+                </form>
+                
+                <div id="form-message" style="display:none; margin-top: 2rem; color: var(--primary-blue); font-weight: bold; text-align: center; background: #eef2f5; padding: 2rem; border-radius: 5px;">
+                    <i class="fas fa-check-circle" style="font-size: 2rem; color: var(--accent-gold); margin-bottom: 1rem; display: block;"></i>
+                    Thank you! Your quote request has been sent.<br>We will contact you shortly to confirm availability.
+                </div>
             </div>
         </div>
     </section>
@@ -543,27 +906,32 @@
                     605 Filton Ave, Horfield,<br>
                     Bristol, BS7 0QH
                 </p>
+                <p style="margin-top: 1rem;">
+                    <strong>Email:</strong><br>
+                    <a href="mailto:info@yrcleaners.co.uk">info@yrcleaners.co.uk</a>
+                </p>
             </div>
             <div class="footer-col">
                 <h4>Quick Links</h4>
                 <ul>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Our Values</a></li>
-                    <li><a href="#">Reviews</a></li>
-                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#services">Our Services</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
+                    <li><a href="#booking">Book Online</a></li>
                 </ul>
             </div>
             <div class="footer-col">
-                <h4>Contact Us</h4>
+                <h4>Get In Touch</h4>
                 <ul>
-                    <li><i class="fas fa-envelope"></i> info@yrcleaners.co.uk</li>
+                    <li><i class="fas fa-map-marker-alt"></i> Bristol & Surrounding Areas</li>
                     <li><i class="fas fa-phone"></i> Call Us</li>
                     <li><i class="fab fa-whatsapp"></i> WhatsApp Us</li>
                 </ul>
             </div>
         </div>
         <div class="copyright">
-            &copy; 2026 YR Cleaning Solutions. All rights reserved. | Privacy Policy | Terms & Conditions
+            &copy; 2026 YR Cleaning Solutions. All rights reserved. | Privacy Policy | Terms & Conditions | Cookie Policy
         </div>
     </footer>
 
@@ -573,8 +941,9 @@
 
         function nextStep(step) {
             // Validate current step inputs before proceeding
-            const currentInput = document.querySelector(`#step${step} input, #step${step} select`);
-            if (currentInput && !currentInput.checkValidity()) {
+            const currentInput = document.querySelector(`#step${step} input, #step${step} select, #step${step} textarea`);
+            // Note: Textarea is optional so we don't validate it strictly if it exists
+            if (currentInput && currentInput.tagName !== 'TEXTAREA' && !currentInput.checkValidity()) {
                 currentInput.reportValidity();
                 return;
             }
@@ -600,6 +969,32 @@
             document.querySelectorAll('.step')[currentStep - 1].classList.add('active');
         }
 
+        // Function to handle clicking a service card
+        function selectService(serviceName) {
+            // 1. Scroll to the booking form
+            document.getElementById('booking').scrollIntoView({ behavior: 'smooth' });
+            
+            // 2. Find the service dropdown
+            const serviceSelect = document.getElementById('serviceSelect');
+            
+            // 3. Set the value based on the card clicked
+            // We need to match the card text to the option values in the dropdown
+            for (let i = 0; i < serviceSelect.options.length; i++) {
+                if (serviceSelect.options[i].value === serviceName) {
+                    serviceSelect.selectedIndex = i;
+                    break;
+                }
+            }
+            
+            // Optional: Highlight the form briefly to show it changed
+            const formContainer = document.querySelector('.booking-container');
+            formContainer.style.transition = 'box-shadow 0.3s';
+            formContainer.style.boxShadow = '0 0 20px rgba(212, 175, 55, 0.8)';
+            setTimeout(() => {
+                formContainer.style.boxShadow = '0 10px 30px rgba(0,0,0,0.1)';
+            }, 1000);
+        }
+
         // Handle Form Submission
         document.getElementById('quoteForm').addEventListener('submit', function(e) {
             e.preventDefault();
@@ -608,7 +1003,10 @@
             const formData = new FormData(this);
             const data = Object.fromEntries(formData.entries());
 
-            // Simulate API Call (In a real scenario, this sends to your backend/email)
+            // --- IMPORTANT: CONNECT TO EMAIL SERVICE HERE ---
+            // Currently, this just logs to console. To make it work:
+            // 1. Sign up for Formspree.io or Netlify Forms.
+            // 2. Replace the code below with your form action URL fetch request.
             console.log('Booking Request:', data);
 
             // Show Success Message
@@ -616,9 +1014,13 @@
             document.querySelector('.progress-bar').style.display = 'none';
             document.getElementById('form-message').style.display = 'block';
             
-            // Optional: Redirect or reset
-            // alert("Quote request sent! We will contact you shortly.");
+            // Scroll to message
+            document.getElementById('form-message').scrollIntoView({ behavior: 'smooth', block: 'center' });
         });
+
+        // Set minimum date for booking to today
+        const today = new Date().toISOString().split('T')[0];
+        document.querySelector('input[name="date"]').setAttribute('min', today);
     </script>
 </body>
 </html>
