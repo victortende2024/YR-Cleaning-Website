@@ -51,6 +51,8 @@
             padding: 0 2rem;
         }
 
+       
+
         .section-padding { padding: 5rem 0; }
         .text-center { text-align: center; }
 
@@ -111,8 +113,8 @@
         }
 
         .logo img {
-            height: 80px;
-            width: auto;
+            height: 150px;
+            width: 150px;
         }
 
         .nav-links {
@@ -737,7 +739,7 @@
             <p class="text-center" style="margin-bottom: 3rem;">Cleaning When It Works For You. Get your quote in 60 seconds.</p>
             
             <div class="booking-container">
-                <form id="quoteForm">
+                <form id="quoteForm" action="https://formspree.io/f/moevvorr" method="POST">
                     <!-- Progress Bar -->
                     <div class="progress-bar">
                         <div class="step active">1</div>
@@ -996,27 +998,32 @@
         }
 
         // Handle Form Submission
-        document.getElementById('quoteForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Gather data
-            const formData = new FormData(this);
-            const data = Object.fromEntries(formData.entries());
-
-            // --- IMPORTANT: CONNECT TO EMAIL SERVICE HERE ---
-            // Currently, this just logs to console. To make it work:
-            // 1. Sign up for Formspree.io or Netlify Forms.
-            // 2. Replace the code below with your form action URL fetch request.
-            console.log('Booking Request:', data);
-
+       document.getElementById('quoteForm').addEventListener('submit', function(e) {
+    e.preventDefault(); // Keep this to prevent page reload
+    
+    const form = e.target;
+    const formData = new FormData(form);
+    
+    fetch(form.action, {
+        method: form.method,
+        body: formData,
+        headers: {
+            'Accept': 'application/json'
+        }
+    }).then(response => {
+        if (response.ok) {
             // Show Success Message
             document.getElementById('quoteForm').style.display = 'none';
             document.querySelector('.progress-bar').style.display = 'none';
             document.getElementById('form-message').style.display = 'block';
-            
-            // Scroll to message
             document.getElementById('form-message').scrollIntoView({ behavior: 'smooth', block: 'center' });
-        });
+        } else {
+            alert("Oops! There was a problem submitting your form. Please try again.");
+        }
+    }).catch(error => {
+        alert("Oops! There was a problem submitting your form. Please try again.");
+    });
+});
 
         // Set minimum date for booking to today
         const today = new Date().toISOString().split('T')[0];
